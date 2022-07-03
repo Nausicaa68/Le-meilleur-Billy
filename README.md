@@ -87,7 +87,9 @@ print(count)
 ```
 
 On obtient :
- 
+
+![image](https://user-images.githubusercontent.com/58084848/177019434-25af62c7-30f2-4cf5-80e2-a14f99aab082.png)
+
 
 
 
