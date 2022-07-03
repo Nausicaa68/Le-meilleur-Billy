@@ -228,8 +228,6 @@ for i in range (len(lesmeilleurs)):
     print("")
 ```
 
-On obtient le résultat suivant : 
-
 
 ## Le meilleur Billy
 
