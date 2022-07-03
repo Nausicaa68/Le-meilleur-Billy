@@ -76,14 +76,14 @@ On obtient :
 
 ![image](https://user-images.githubusercontent.com/58084848/177019434-25af62c7-30f2-4cf5-80e2-a14f99aab082.png)
 
-Cependant, effectuer cette combinaison nous permet tout de même de prendre plusieurs fois le même trio objet. On peut ainsi obtenir le trio "arc epee pamphlet", puis obtenir plus loin le trio "pamphlet epee arc". Cela fait doublon. Il y a 6 combinaisons possible pour chaque trio. 
+Cependant, effectuer cette combinaison nous induit à prendre plusieurs fois le même trio objet. On peut ainsi obtenir le trio "arc epee pamphlet", puis obtenir plus loin le trio "pamphlet epee arc". Cela fait doublon. Il y a 6 combinaisons possible pour chaque trio. 
 
-Il va nous falloir changer, car, dans l'optique de faire un classement, nous devons enlever ce surplus. Sinon, les 6 premiers trio du classement seront la même combinaison. 
+Il va nous falloir changer, car, dans l'optique de faire un classement, nous devons enlever ce surplus. Sinon, les 6 premiers trio du classement seront la même combinaison des trois meilleurs objets. 
 
 Pour cela, on va plutôt faire comme suit. 
 
 ``` python
-print(echo)
+print("A dev")
 ```
 
 
