@@ -69,7 +69,11 @@ def calc_moyenne_ponderee(billy):
     moyPond = 0
     for j in range(len(billy)):
         moyPond += (billy[j] * PONDERATION_CARACT[j])
-    moyPond /= len(billy)
+
+    sommedesPond = 0
+    for i in PONDERATION_CARACT:
+        sommedesPond += i
+    moyPond /= sommedesPond
 
     return moyPond
 
@@ -195,10 +199,14 @@ def main_programme(maxAffichage):
         print_Billy(all_Billy[i])
     print("\n")
 
+    lesTris = ["moyennes", "médianes", "moyennes pondérées"]
+
     # les meilleurs
-    print("Les meilleurs Billy sont :")
-    for i in lesmeilleurs:
-        print_Billy(i)
+    print("Les meilleurs Billy sont :\n")
+    for i in range (len(lesmeilleurs)):
+        print("En fonction des", lesTris[i], ":")
+        print_Billy(lesmeilleurs[i])
+        print("")
 
 
 if __name__ == "__main__":
