@@ -86,7 +86,8 @@ for key1 in caractObjet:
 print(count)
 ```
 
-
+On obtient :
+ 
 
 
 
