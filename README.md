@@ -12,7 +12,7 @@ Eh gamin ! Si tu t'es procuré *La Forteresse du chaudron Noir*, c'est certain,
 
 Mais quel Billy es-tu ? Es-tu LE meilleur Billy ?
 
-Moi, je suis un Billy informaticien. Et comme tout informaticien, j'informatise euh... j'automatise. Il y a 3 objets à choisir, parmi 12. Rend toi compte, gamin, cela fait 12×11×10 combinaisons possibles, soit 1320. En sachant que chaque objet donne des caractéristiques différentes, qu'une classe a des capacités spécifiques et que certaines caractéristiques de Billy sont plus importantes que d'autres, quelles sont les *3 objets* à choisir pour avoir le meilleuuuuuuuuuuuuuur Billy !?
+Moi, je suis un Billy informaticien. Et comme tout informaticien, j'informatise ! Il y a 3 objets à choisir, parmi 12. Rend toi compte, gamin, cela fait 12×11×10 combinaisons possibles, soit 1320. En sachant que chaque objet donne des caractéristiques différentes, qu'une classe a des capacités spécifiques et que certaines caractéristiques de Billy sont plus importantes que d'autres, quelles sont les *3 objets* à choisir pour avoir le meilleuuuuuuuuuuuuuur Billy !?
 
 Voyons comment l'informatique peut nous aider.
 
