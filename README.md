@@ -251,10 +251,9 @@ Bon, mais d'un point de vue statistique ?
 
 Eh bien, voyez par vous même. 
 
-image
+![image](https://user-images.githubusercontent.com/58084848/177020372-343ac28f-ce0d-4411-8eb2-45c4812e7b60.png)
 
-
-X, X et X feront de vous le meilleur Billy. 
+Marmite, fourche et sac de grains feront de vous le meilleur Billy. 
 
 Explication (à venir)
 
