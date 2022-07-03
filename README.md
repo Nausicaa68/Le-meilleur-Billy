@@ -56,20 +56,6 @@ caractClasse = {
 }
 ```
 
-Enfin, il est a noté que chaque stat ne vaut pas autant en terme de poids. Il y a des caractéristiques plus importantes que d'autres (comme l'habilité). Il faut donc poser une pondération sur ces stats. Disons : 
-- habilité : 
-- endurance : 
-- adresse : 
-- chance : 
-- dégats : 
-- armure : 
-- critique : 
-- PV : 
-
-``` python
-PONDERATION_CARACT = [1, 1, 1, 1, 1, 1, 1, 1]
-```
-
 ## 1320 combinaisons, that a lot
 
 Comment parcourir ces 1320 combinaisons. Faisons une triple boucle for dont les intructions au bout ne s'exécute que si les trois objets sont différents (on ajoute un petit compteur pour voir) : 
@@ -90,6 +76,187 @@ On obtient :
 
 ![image](https://user-images.githubusercontent.com/58084848/177019434-25af62c7-30f2-4cf5-80e2-a14f99aab082.png)
 
+Cependant, effectuer cette combinaison nous permet tout de même de prendre plusieurs fois le même trio objet. On peut ainsi obtenir le trio "arc epee pamphlet", puis obtenir plus loin le trio "pamphlet epee arc". Cela fait doublon. Il y a 6 combinaisons possible pour chaque trio. 
+
+Il va nous falloir changer, car, dans l'optique de faire un classement, nous devons enlever ce surplus. Sinon, les 6 premiers trio du classement seront la même combinaison. 
+
+POur cela, on va plutôt faire comme cela. 
+
+``` python
+print(echo)
+```
+
+
+## Créer un Billy
+
+Nous allons maintenant créer un Billy tout neuf. Premièrement, on ajoute les caractéristiques du Billy de base, celui qui n'est pas encore équipé. 
+
+``` python
+newBilly = [0, 0, 0, 0, 0, 0, 0, 0]
+for j in range(len(newBilly)):
+    newBilly[j] += BILLY_DEBUT[j]
+```
+
+Puis pour chaque objet, on ajoute ses caractéristiques.
+
+``` python
+# ajout des caracts liées aux objets
+for i in objets:
+    for j in range(len(newBilly)):
+        newBilly[j] += caractObjet[i][0][j]
+```
+
+Ensuite on détermine la classe de notre Billy et on ajoute les caractéristiques correspondantes.
+
+``` python
+# détermine la classe de billy
+classedeBilly = determ_billy_class(
+    [caractObjet[objets[0]][1], caractObjet[objets[1]][1], caractObjet[objets[2]][1]])
+
+# ajout des caracts liées a la classe
+for j in range(len(newBilly)):
+    newBilly[j] += caractClasse[classedeBilly][j]
+```
+
+Enfin, on ajoute les PV basé sur l'endurance de notre désormais accompli Billy.
+
+``` python
+# ajout des PV
+newBilly[7] = 3 * newBilly[1]
+```
+
+Voilà !
+
+## Les calculs
+
+"Quels calculs faire ?", demanda le Pyro-Barbare, dont l'utilisation du mot "calcul" était aussi surprenante que le fait qu'il pose une question pareil. 
+
+Pourtant, il va bien nous falloir faire des calculs pour déterminer le meilleur Billy. J'ai choisi trois outils statistiques courant que l'on va appliquer aux caractériques de chaque Billy : 
+- la moyenne 
+- la médiane
+- la moyenne pondérée
+
+### Moyenne pondérée ?
+
+Il est à noté que chaque caractéristique ne vaut pas autant en terme de poids. Il y a des caractéristiques plus importantes que d'autres (comme l'habilité). Il faut donc poser une pondération sur ces stats. Disons : 
+- habilité : 1
+- endurance : 1
+- adresse : 1
+- chance : 1
+- dégats : 1
+- armure : 1
+- critique : 1
+- PV : 1
+
+``` python
+PONDERATION_CARACT = [1, 1, 1, 1, 1, 1, 1, 1]
+```
+
+1. La moyenne :
+``` python
+moy = 0
+for j in range(len(billy)):
+    moy += billy[j]
+moy /= len(billy)
+```
+
+2. La médiane :
+``` python
+mediane = 0
+buff = [0, 0, 0, 0, 0, 0, 0, 0]
+for j in range(len(billy)):
+    buff[j] += billy[j]
+
+buff.sort()
+if((len(buff) % 2) == 0):
+    mediane = (buff[(int(len(buff)/2) - 1)] + buff[(int(len(buff)/2))]) / 2
+else:
+    mediane = buff[(int(len(buff)/2) - 1)]
+```
+
+3. La moyenne pondérée:
+``` python
+moyPond = 0
+for j in range(len(billy)):
+    moyPond += (billy[j] * PONDERATION_CARACT[j])
+
+sommedesPond = 0
+for i in PONDERATION_CARACT:
+    sommedesPond += i
+moyPond /= sommedesPond
+```
+
+## Un Billy au complet
+
+``` python
+# calcul de la moyenne
+moyenne = calc_moyenne(newBilly)
+
+# calcul de la médiane
+mediane = calc_mediane(newBilly)
+
+# calcul de la moyenne pondérée
+moyennePond = calc_moyenne_ponderee(newBilly)
+```
+
+Nous pouvons maintenant créer un Billy au complet. On va lui donner ce format : 
+
+```
+format aBilly : [ [trio d'objets], [caractéristique], classe, moyenne, médiane, moyenne pondérée ]
+```
+
+Il ne nous reste plus qu'à trier les Billy selon une des trois caractéristiques finales. Par exemple : 
+
+``` python
+# sort la liste en fct des moyennes
+print("Tri en fct des moyennes : ")
+all_Billy = sorted(all_Billy, key=lambda l: l[3], reverse=True)
+lesmeilleurs.append(all_Billy[0])
+for i in range(0, maxAffichage):
+    print_Billy(all_Billy[i])
+print("\n")
+```
+
+On en profite pour ajouter le premier, donc le meilleur selon cet outil statistique, à une liste "lesmeilleurs". 
+
+``` python
+# les meilleurs
+print("Les meilleurs Billy sont :\n")
+for i in range (len(lesmeilleurs)):
+    print("En fonction des", lesTris[i], ":")
+    print_Billy(lesmeilleurs[i])
+    print("")
+```
+
+On obtient le résultat suivant : 
+
+
+## Le meilleur Billy
+
+Nous voilà donc à la réponse. 
+
+**LE**
+
+**MEILLEUR**
+
+**BILLY**
+
+**EST**
+
+**...**
+
+... celui que vous choisirez, avec lequel vous prendrez plaisir à lire la magnifique histoire que nous offre Bob. N'hésitez pas à complimentez les cheveux de la centauresse, vous aurez la meilleur fin. 
+
+Bon, mais d'un point de vue statistique ?
+
+Eh bien, voyez par vous même. 
+
+image
+
+
+X, X et X feront de vous le meilleur Billy. 
+
+Explication (à venir)
 
 
 
