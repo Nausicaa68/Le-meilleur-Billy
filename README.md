@@ -56,7 +56,7 @@ caractClasse = {
 }
 ```
 
-## 1320 combinaisons, that a lot
+## 1320 combinaisons, that's a lot
 
 Comment parcourir ces 1320 combinaisons. Faisons une triple boucle for dont les intructions au bout ne s'exécute que si les trois objets sont différents (on ajoute un petit compteur pour voir) : 
 
@@ -80,7 +80,7 @@ Cependant, effectuer cette combinaison nous permet tout de même de prendre plus
 
 Il va nous falloir changer, car, dans l'optique de faire un classement, nous devons enlever ce surplus. Sinon, les 6 premiers trio du classement seront la même combinaison. 
 
-POur cela, on va plutôt faire comme cela. 
+Pour cela, on va plutôt faire comme suit. 
 
 ``` python
 print(echo)
