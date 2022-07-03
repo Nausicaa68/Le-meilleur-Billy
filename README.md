@@ -1,4 +1,4 @@
-# Le-meilleur-Billy
+# Le meilleur Billy
 
 Eh gamin ! Si tu t'es procuré *La Forteresse du chaudron Noir*, c'est certain, 
 
