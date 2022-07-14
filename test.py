@@ -22,18 +22,24 @@ count = 0
 counter2 = 0
 print(count)
 print(counter2)
-for key1 in caractObjet:
-    for key2 in caractObjet:
-        for key3 in caractObjet:
-            if((key1 != key2) and (key1 != key3) and (key2 != key3)):
-                count += 1
-                #print(count, ":", key1, key2, key3)
 
-                if(key1 == "epee" or key1 == "lance" or key1 == "arc"):
-                    if(key2 == "epee" or key2 == "lance" or key2 == "arc"):
-                        if(key3 == "epee" or key3 == "lance" or key3 == "arc"):
-                            print(count, ":", key1, key2, key3)
-                            counter2 += 1
+allKeys = list(caractObjet.keys())
+print(allKeys)
+
+for i in range(0, len(allKeys)):
+    for j in range(i+1, len(allKeys)):
+        for k in range(j+1, len(allKeys)):
+            # if((key1 != key2) and (key1 != key3) and (key2 != key3)):
+            count += 1
+            #print(count, ":", key1, key2, key3)
+            print("i", i, "j", j, "k", k)
+            print(count, ":", allKeys[i], allKeys[j], allKeys[k])
+
+            if(allKeys[i] == "epee" or allKeys[i] == "lance" or allKeys[i] == "arc"):
+                if(allKeys[j] == "epee" or allKeys[j] == "lance" or allKeys[j] == "arc"):
+                    if(allKeys[k] == "epee" or allKeys[k] == "lance" or allKeys[k] == "arc"):
+                        print("\t\t", count, ": ", allKeys[i], allKeys[j], allKeys[k])
+                        counter2 += 1
 
 print(count)
 print(counter2)

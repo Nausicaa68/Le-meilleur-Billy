@@ -34,7 +34,6 @@ def calc_mediane(billy):
     """
     calcul de la médiane des caractéristiques d'un billy
     """
-
     mediane = 0
 
     buff = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -79,6 +78,10 @@ def calc_moyenne_ponderee(billy):
 
 
 def determ_billy_class(classObjet):
+    """
+    permet de déterminer la classe d'un Billy. 
+    Prend en parametre un tableau contenant les valeurs désignant la catégorie d'un objet : (1:arme, 2:equipement, 3:outils)
+    """
     nbArme = 0
     nbEquip = 0
     nbOutil = 0
@@ -157,6 +160,17 @@ def print_Billy(aBilly):
     print()
 
 
+def triParametre(parametreName, parametreIndex, all_Billy, lesmeilleurs, maxAffichage):
+    # sort la liste en fct du parametre
+    print("Tri en fonction des", parametreName, ": ")
+    all_Billy = sorted(
+        all_Billy, key=lambda l: l[parametreIndex], reverse=True)
+    lesmeilleurs.append(all_Billy[0])
+    for i in range(0, maxAffichage):
+        print_Billy(all_Billy[i])
+    print("\n")
+
+
 def main_programme(maxAffichage):
     """
     affiche une liste triée des billy, du plus grand au plus petit
@@ -167,47 +181,30 @@ def main_programme(maxAffichage):
     all_Billy = []
     lesmeilleurs = []
 
-    for key1 in caractObjet:
-        for key2 in caractObjet:
-            for key3 in caractObjet:
-                if((key1 != key2) and (key1 != key3) and (key2 != key3)):
-                    all_Billy.append(build_billy([key1, key2, key3]))
+    allKeys = list(caractObjet.keys())
 
-    print("len(all_Billy) :", len(all_Billy))
+    for i in range(0, len(allKeys)):
+        for j in range(i+1, len(allKeys)):
+            for k in range(j+1, len(allKeys)):
+                # if((key1 != key2) and (key1 != key3) and (key2 != key3)):
+                all_Billy.append(build_billy(
+                    [allKeys[i], allKeys[j], allKeys[k]]))
 
-    # sort la liste en fct des moyennes
-    print("Tri en fct des moyennes : ")
-    all_Billy = sorted(all_Billy, key=lambda l: l[3], reverse=True)
-    lesmeilleurs.append(all_Billy[0])
-    for i in range(0, maxAffichage):
-        print_Billy(all_Billy[i])
-    print("\n")
+    #print("len(all_Billy) :", len(all_Billy))
 
-    # sort la liste en fct des medianes
-    print("Tri en fct des médianes : ")
-    all_Billy = sorted(all_Billy, key=lambda l: l[4], reverse=True)
-    lesmeilleurs.append(all_Billy[0])
-    for i in range(0, maxAffichage):
-        print_Billy(all_Billy[i])
-    print("\n")
+    triParametre("moyennes", 3, all_Billy, lesmeilleurs, maxAffichage)
+    triParametre("médianes", 4, all_Billy, lesmeilleurs, maxAffichage)
+    triParametre("moyennes pondérées", 3, all_Billy,
+                 lesmeilleurs, maxAffichage)
 
-    # sort la liste en fct des moyennes ponderees
-    print("Tri en fct des moyennes ponderees : ")
-    all_Billy = sorted(all_Billy, key=lambda l: l[5], reverse=True)
-    lesmeilleurs.append(all_Billy[0])
-    for i in range(0, maxAffichage):
-        print_Billy(all_Billy[i])
-    print("\n")
-
+    # affichage des meilleurs pour chaque tri
     lesTris = ["moyennes", "médianes", "moyennes pondérées"]
-
-    # les meilleurs
     print("Les meilleurs Billy sont :\n")
-    for i in range (len(lesmeilleurs)):
+    for i in range(len(lesmeilleurs)):
         print("En fonction des", lesTris[i], ":")
         print_Billy(lesmeilleurs[i])
         print("")
 
 
 if __name__ == "__main__":
-    main_programme(10)
+    main_programme(4)
