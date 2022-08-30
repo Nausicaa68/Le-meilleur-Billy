@@ -27,7 +27,13 @@ caractClasse = {
 
 BILLY_DEBUT = [2, 2, 1, 3, 0, 0, 0, 0]
 LES_CLASSES = ["guerrier", "prudent", "paysan", "debrouillard"]
-PONDERATION_CARACT = [1, 1, 1, 1, 1, 1, 1, 1]
+
+PONDERATION_CARACT = {
+    "guerrier": [5, 1, 3, 0, 4, 3, 1, 1],
+    "prudent": [1, 1, 1, 1, 1, 1, 1, 1],
+    "paysan": [1, 1, 1, 1, 1, 1, 1, 1],
+    "debrouillard": [1, 1, 1, 1, 1, 1, 1, 1]
+}
 
 
 def calc_mediane(billy):
@@ -61,16 +67,16 @@ def calc_moyenne(billy):
     return moy
 
 
-def calc_moyenne_ponderee(billy):
+def calc_moyenne_ponderee(billy, classe):
     """
     calcul de la moyenne pondérée des caractéristiques d'un billy
     """
     moyPond = 0
     for j in range(len(billy)):
-        moyPond += (billy[j] * PONDERATION_CARACT[j])
+        moyPond += (billy[j] * PONDERATION_CARACT[classe][j])
 
     sommedesPond = 0
-    for i in PONDERATION_CARACT:
+    for i in PONDERATION_CARACT[classe]:
         sommedesPond += i
     moyPond /= sommedesPond
 
@@ -140,7 +146,7 @@ def build_billy(objets):
     mediane = calc_mediane(newBilly)
 
     # calcul de la moyenne pondérée
-    moyennePond = calc_moyenne_ponderee(newBilly)
+    moyennePond = calc_moyenne_ponderee(newBilly, classedeBilly)
 
     aCompleteBilly = [objets, newBilly,
                       classedeBilly, moyenne, mediane, moyennePond]

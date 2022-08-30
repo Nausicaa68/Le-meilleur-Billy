@@ -138,18 +138,23 @@ Pourtant, il va bien nous falloir faire des calculs pour déterminer le meilleur
 
 ### Moyenne pondérée ?
 
-Il est à noté que chaque caractéristique ne vaut pas autant en terme de poids. Il y a des caractéristiques plus importantes que d'autres (comme l'habilité). Il faut donc poser une pondération sur ces stats. Disons : 
-- habilité : 1
+Il est à noté que chaque caractéristique ne vaut pas autant en terme de poids. Il y a des caractéristiques plus importantes que d'autres (comme l'habilité). Il faut donc poser une pondération sur ces stats. En plus de cela, cette pondération est différente en fonction de la classe de Billy. Disons pour un guerrier : 
+- habilité : 5
 - endurance : 1
-- adresse : 1
-- chance : 1
-- dégats : 1
-- armure : 1
+- adresse : 3
+- chance : 0
+- dégats : 4
+- armure : 3
 - critique : 1
 - PV : 1
 
 ``` python
-PONDERATION_CARACT = [1, 1, 1, 1, 1, 1, 1, 1]
+PONDERATION_CARACT = {
+    "guerrier": [5, 1, 3, 0, 4, 3, 1, 1],
+    "prudent": [1, 1, 1, 1, 1, 1, 1, 1],
+    "paysan": [1, 1, 1, 1, 1, 1, 1, 1],
+    "debrouillard": [1, 1, 1, 1, 1, 1, 1, 1]
+}
 ```
 
 1. La moyenne :
@@ -253,7 +258,7 @@ Eh bien, voyez par vous même.
 
 Marmite, fourche et sac de grains feront de vous le meilleur Billy. 
 
-Explication (à venir)
+
 
 
 
